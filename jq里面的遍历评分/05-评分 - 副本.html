@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>五角星评分案例</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .comment {
+      font-size: 40px;
+      color: red;
+    }
+
+    .comment li {
+      float: left;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <ul class="comment">
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+  </ul>
+
+</body>
+<script src="../js/jquery-2.2.2.js"></script>
+<script>
+$(()=>{
+  // 效果：1.鼠标移入时，停到哪里，哪里就是实心；
+      //  2.鼠标移出时，被点击过的星星还是实心，没点击的是空心；
+      //  3。点击星星，当前的和之前都变实心；
+
+      // 1.鼠标移入时，停到哪里，哪里和之前的都是实心
+      let li=$('.comment>li');
+      li.on('mouseover',function(){
+        let index = $(this).index();
+        //  要遍历去找出： 什么时候是实心的？：索引比当前索引小；
+        li.each(function(i,e){
+          if(i<=index){
+            $(e).text('😀');
+          }else{
+            $(e).text('☆');
+          }
+        })
+      })
+
+        //  2.鼠标移出时，被点击过的星星还是实心，没点击的是空心
+         // 记录当前的分数
+         let srcll=0;
+      li.on('mouseout',function(){
+        li.each(function(i,e){
+        //  if(i<srcll){
+        //    $(e).text('😀');
+        //  }else{
+        //     $(e).text('☆');
+        //   }
+        console.log($(this));
+        console.log(e);
+        })
+      })
+
+      // 3。点击星星，当前的和之前都变实心；
+    // li.on('click',function(){
+    //   srcll=$(this).index()+1;
+    // })
+
+
+})
+
+
+
+</script>
+
+</html>
